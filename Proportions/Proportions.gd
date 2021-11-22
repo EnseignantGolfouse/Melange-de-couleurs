@@ -40,10 +40,14 @@ func recalculate():
 	$ColorResult.color = Color(self.red_percent*3, self.green_percent*3, self.blue_percent*3, 1.0)
 
 func update_labels():
-	$RedQuantity.text = "Rouge : " + str(floor(self.red_percent * 1000) / 10) + "%"
-	$GreenQuantity.text = "Vert : " + str(floor(self.green_percent * 1000) / 10) + "%"
-	$BlueQuantity.text = "Bleu : " + str(floor(self.blue_percent * 1000) / 10) + "%"
-	$BlackQuantity.text = "Noir : " + str(floor(self.black_percent * 1000) / 10) + "%"
+	var red_percent_approx = int(self.red_percent * 100)
+	var green_percent_approx = int(self.green_percent * 100)
+	var blue_percent_approx = int(self.blue_percent * 100)
+	var black_percent_approx = 100 - red_percent_approx - blue_percent_approx - green_percent_approx
+	$RedQuantity.text = "Rouge : " + str(red_percent_approx) + "%"
+	$GreenQuantity.text = "Vert : " + str(green_percent_approx) + "%"
+	$BlueQuantity.text = "Bleu : " + str(blue_percent_approx) + "%"
+	$BlackQuantity.text = "Noir : " + str(black_percent_approx) + "%"
 
 
 func _on_Silo1_dragged(offset: int):
